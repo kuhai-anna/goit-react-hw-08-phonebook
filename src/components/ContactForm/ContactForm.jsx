@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     .min(2, 'Too short!')
     .max(20, 'Too long!')
     .required('Name is a required field'),
-  phone: yup
+  number: yup
     .number(
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
     )
@@ -31,21 +31,21 @@ const schema = yup.object().shape({
 
 const initialValues = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(selectContacts); // contacts.items
 
-  const onFormSubmit = ({ name, phone }, { resetForm }) => {
+  const onFormSubmit = ({ name, number }, { resetForm }) => {
     // const { name, number } = values;
     const normalizeNewName = name.toLowerCase();
     const nameList = items.map(contact => contact.name.toLowerCase());
 
     nameList.includes(normalizeNewName)
       ? alert(`${name} is already in contacts.`)
-      : dispatch(addContact({ name, phone }));
+      : dispatch(addContact({ name, number }));
 
     resetForm();
   };
@@ -75,7 +75,7 @@ export const ContactForm = () => {
             <LabelText>Number</LabelText>
             <Field
               type="tel"
-              name="phone"
+              name="number"
               placeholder="Enter a number"
               // placeholder="+380 XX XXX XX XX"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
