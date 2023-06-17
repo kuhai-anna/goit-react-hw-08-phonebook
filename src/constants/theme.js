@@ -9,6 +9,7 @@ export const theme = {
     borderHover: '#a8a8a8',
     btn: '#a8a8a8',
     btnHover: '#d2d2d2',
+    error: '#ff0000',
   },
   spacing: value => `${4 * value}px`,
 };
