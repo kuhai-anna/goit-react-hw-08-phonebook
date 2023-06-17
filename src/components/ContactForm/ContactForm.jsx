@@ -11,7 +11,7 @@ import {
   ErrorMessage,
   LabelText,
 } from './ContactForm.styled';
-import { selectContacts } from 'redux/contacts/selectors';
+import { selectVisibleContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 
 const schema = yup.object().shape({
@@ -36,14 +36,14 @@ const initialValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector(selectContacts); // contacts.items
+  const contacts = useSelector(selectVisibleContacts);
 
   const onFormSubmit = ({ name, number }, { resetForm }) => {
     // const { name, number } = values;
     const normalizeNewName = name.toLowerCase();
-    const nameList = items.map(contact => contact.name.toLowerCase());
+    const nameList = contacts?.map(contact => contact.name.toLowerCase()); // ?
 
-    nameList.includes(normalizeNewName)
+    nameList?.includes(normalizeNewName)
       ? alert(`${name} is already in contacts.`)
       : dispatch(addContact({ name, number }));
 
