@@ -1,16 +1,14 @@
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { IconButton } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useState } from 'react';
 import { register } from 'redux/auth/operations';
-import {
-  Field,
-  Form,
-  FormButton,
-  FormField,
-  FormLabel,
-  ErrorMessage,
-  LabelText,
-} from '../ContactForm/ContactForm.styled';
+import { FormTextField } from 'components/FormTextField/FormTextField';
+import { Form } from './RegisterForm.styled';
+import { theme } from 'constants/theme';
+import { Button } from 'components/Button/Button';
 
 const schema = yup.object().shape({
   name: yup
@@ -38,6 +36,11 @@ const initialValues = {
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onVisibilityPassword = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  };
 
   const onFormSubmit = ({ name, email, password }, { resetForm }) => {
     // const { name, email, password } = values;
@@ -53,44 +56,25 @@ export const RegisterForm = () => {
       onSubmit={onFormSubmit}
     >
       <Form>
-        <FormField>
-          <FormLabel>
-            <LabelText>Username</LabelText>
-            <Field
-              name="name"
-              placeholder="Enter a name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-            <ErrorMessage name="name" component="div" />
-          </FormLabel>
-        </FormField>
-        <FormField>
-          <FormLabel>
-            <LabelText>Email</LabelText>
-            <Field
-              type="email"
-              name="email"
-              placeholder="Enter a email"
-              required
-            />
-            <ErrorMessage name="email" component="div" />
-          </FormLabel>
-        </FormField>
-        <FormField>
-          <FormLabel>
-            <LabelText>Password</LabelText>
-            <Field
-              type="password"
-              name="password"
-              placeholder="Create a password"
-              required
-            />
-            <ErrorMessage name="password" component="div" />
-          </FormLabel>
-        </FormField>
-        <FormButton type="submit">Register</FormButton>
+        <FormTextField name="name" label="Name" />
+        <FormTextField name="email" label="Email" />
+        <FormTextField
+          name="password"
+          label="Password"
+          type={showPassword ? 'text' : 'password'}
+        >
+          <IconButton
+            onClick={onVisibilityPassword}
+            sx={{
+              ':hover': {
+                color: `${theme.colors.textAccent}`,
+              },
+            }}
+          >
+            {showPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </FormTextField>
+        <Button text={'Register'} />
       </Form>
     </Formik>
   );
