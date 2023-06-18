@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
     text: '#212121',
-    textAccent: '#ffffff',
+    textAccent: '#000000',
     textError: '#ff6b6b',
     bgd: '#f4f4f4',
     bgdAccent: '#d2d2d2',
@@ -9,7 +9,6 @@ export const theme = {
     borderHover: '#a8a8a8',
     btn: '#a8a8a8',
     btnHover: '#d2d2d2',
-    error: '#ff0000',
   },
   spacing: value => `${4 * value}px`,
 };
