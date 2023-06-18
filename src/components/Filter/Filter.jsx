@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FilterField, FilterLabel, FilterLabelText } from './Filter.styled';
+import { TextField } from '@mui/material';
 import { selectFilter } from 'redux/filter/selectors';
 import { changeFilter } from 'redux/filter/filterSlice';
 
@@ -12,14 +12,17 @@ export const Filter = () => {
   };
 
   return (
-    <FilterLabel>
-      <FilterLabelText>Find contacts by name</FilterLabelText>
-      <FilterField
-        type="text"
-        placeholder="Enter a name"
-        value={filterValue}
-        onChange={onFilterContacts}
-      />
-    </FilterLabel>
+    <TextField
+      id="standard-number"
+      label="Find contacts by name"
+      type="text"
+      InputLabelProps={{
+        shrink: true,
+      }}
+      variant="filled"
+      value={filterValue}
+      onChange={onFilterContacts}
+      fullWidth
+    />
   );
 };
