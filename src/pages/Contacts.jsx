@@ -10,6 +10,13 @@ import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 
 // import { useLocalStorage } from 'hooks/useLocalStorage';
 
+const styles = {
+  container: {
+    margin: '0 auto',
+    maxWidth: 440,
+  },
+};
+
 const Contacts = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
@@ -26,8 +33,10 @@ const Contacts = () => {
         <ContactForm />
       </Section>
       <Section title="Contacts">
-        <Filter />
-        <ContactList />
+        <div style={styles.container}>
+          <Filter />
+          <ContactList />
+        </div>
       </Section>
     </>
   );
