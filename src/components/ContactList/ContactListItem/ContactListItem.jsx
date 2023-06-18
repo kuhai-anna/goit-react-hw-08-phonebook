@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import {
-  Contact,
-  ContactItem,
-  ContactName,
-  ContactNumber,
-  DeleteButton,
-} from './ContactListItem.styled';
+import { IconButton } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { Contact, ContactItem, ContactName } from './ContactListItem.styled';
 import { deleteContact } from 'redux/contacts/operations';
+import { theme } from 'constants/theme';
 
 export const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -16,12 +13,20 @@ export const ContactListItem = ({ id, name, number }) => {
   return (
     <ContactItem>
       <Contact>
-        <ContactName>{name}: </ContactName>
-        <ContactNumber> {number}</ContactNumber>
+        <ContactName>{name} </ContactName>
+        <span> {number}</span>
       </Contact>
-      <DeleteButton type="button" onClick={onDelete}>
-        Delete
-      </DeleteButton>
+      <IconButton
+        aria-label="delete"
+        onClick={onDelete}
+        sx={{
+          ':hover': {
+            color: `${theme.colors.deleteBtn}`,
+          },
+        }}
+      >
+        <RemoveCircleIcon fontSize="inherit" />
+      </IconButton>
     </ContactItem>
   );
 };
