@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 import { TextField } from '@mui/material';
 import PropTypes from 'prop-types';
-import { theme } from 'constants/theme';
+// import { theme } from 'constants/theme';
 
 export const FormTextField = ({ name, label, type = 'text', children }) => {
   return (
@@ -20,11 +20,11 @@ export const FormTextField = ({ name, label, type = 'text', children }) => {
           InputProps={{
             endAdornment: children,
           }}
-          sx={{
-            '&:hover': {
-              outline: `${theme.colors.borderHover}`,
-            },
-          }}
+          // sx={{
+          //   '&:hover': {
+          //     outline: `${theme.colors.borderHover}`,
+          //   },
+          // }}
         />
       )}
     </Field>
