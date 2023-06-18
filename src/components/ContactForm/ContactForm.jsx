@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import toast from 'react-hot-toast';
 import {
   Field,
   Form,
@@ -20,13 +21,13 @@ const schema = yup.object().shape({
       'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
     )
     .min(2, 'Too short!')
-    .max(20, 'Too long!')
-    .required('Name is a required field'),
+    .max(40, 'Too long!')
+    .required('Name is a required field!'),
   number: yup
     .number(
       'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
     )
-    .required('Phone number is a required field'),
+    .required('Phone number is a required field!'),
 });
 
 const initialValues = {
@@ -44,7 +45,7 @@ export const ContactForm = () => {
     const nameList = contacts?.map(contact => contact.name.toLowerCase()); // ?
 
     nameList?.includes(normalizeNewName)
-      ? alert(`${name} is already in contacts.`)
+      ? toast.error(`You already have a contact named ${name}.`)
       : dispatch(addContact({ name, number }));
 
     resetForm();
