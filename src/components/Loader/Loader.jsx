@@ -6,7 +6,7 @@ const loaderRoot = document.querySelector('#loader-root');
 
 export const Loader = () => {
   const loaderParams = {
-    color: '#424242',
+    color: '#0065d1',
     width: '100px',
     ariaLabel: 'three-dots-loading',
   };
