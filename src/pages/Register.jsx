@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
 import { selectError } from 'redux/auth/selectors';
 import { theme } from '../constants/theme';
+import { Section } from 'components/Section/Section';
 
 const Register = () => {
   const error = useSelector(selectError);
 
   return (
-    <div>
+    <Section>
       {/* <Helmet>
         <title>Registration</title>
       </Helmet> */}
@@ -16,7 +17,7 @@ const Register = () => {
       {error && (
         <p
           style={{
-            color: `${theme.colors.error}`,
+            color: `${theme.colors.textError}`,
             marginTop: `${theme.spacing(4)}`,
             textAlign: 'center',
           }}
@@ -24,7 +25,7 @@ const Register = () => {
           Oops, something went wrong... Please, try again.
         </p>
       )}
-    </div>
+    </Section>
   );
 };
 
