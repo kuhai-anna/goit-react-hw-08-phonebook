@@ -54,5 +54,5 @@ Section.propTypes = {
   tag: PropTypes.string,
   mainTitle: PropTypes.string,
   title: PropTypes.string,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any, //.isRequired
 };
